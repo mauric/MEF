@@ -24,11 +24,15 @@ typedef struct
 	double pt2;
 	double Xc;
 	double Yc;
+	double l;
+	P * pdep;
+	P * pfin;
 } S;
 
 
 struct L
-{	string lg;
+{
+	string lg;
 };
 
 #endif
