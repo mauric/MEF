@@ -396,6 +396,7 @@ void AfficherAngle(vector<P> points) {
 
 //-----------liste de fonctions pour implementer------------------------
 void trouverRef() {
+
 }
 
 void calculSensParcour() {
@@ -418,6 +419,7 @@ void lire_fichier() {
 
 void mesure_angle_entre_noueds() {
 	//utiliser arctang2
+
 }
 
 void calcul_somme_angles_figures() {
@@ -427,20 +429,27 @@ void calcul_somme_angles_figures() {
 void calculLonguerSegments() {
 }
 
+//TODO il manque de finir cette fonction là
+/*
+ * Prende point départ et final et generer point intermediaires
+ */
 void generer_liste_nouds(S s, list<double> Liste) {
-	double m = (s.pfin->y - s.pdep->y) / (s.pfin->x - s.pdep->x); //pent
-	double b = s.pdep->y - m * s.pdep->x;					//point en absice
-	int nbNoueds = s.l / pas;
+	/*
+	 * y = m * x + b
+	 */
+	double m = (s.pfin->y - s.pdep->y) / (s.pfin->x - s.pdep->x); // m = y1 - y2 / x1 - x2s
+	double b = s.pdep->y - m * s.pdep->x;	 //point en absice
+	int pas = s.l / nbNoueds;
 	P Pnext;
-	//calcul de hx et hy
-	double theta = atan(m);
-	double hx = pas * cos(theta);
-	double hy = pas * sin(theta);
+	//calcul de dx et dy
+	double theta = atan2((s.pfin->y - s.pdep->y) / (s.pfin->x - s.pdep->x) );//verifier la utilisation de atan2
+	double dx = pas * cos(theta);
+	double dy = pas * sin(theta);
 
 	for (int i = 0; i < nbNoueds; ++i) {
 		//generation nouvel points
-		Pnext.x = s.pdep->x + (i * hx); // x + hx
-		Pnext.y = s.pdep->y + (i * hy); // y + hy
+		Pnext.x = s.pdep->x + (i * dx); // x + dx
+		Pnext.y = s.pdep->y + (i * dy); // y + dy
 
 		//stock dans la liste
 		Liste
